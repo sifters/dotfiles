@@ -3,7 +3,7 @@
 ## Cloning This Repository
 To clone the repository and all related packages, git should be run recursively
 ```
-$ git clone --recursive https://github.com/username/reponame.git
+$ git clone --recursive https://github.com/sifters/.vim.git
 ```
 
 ## Packages
