@@ -1,0 +1,47 @@
+" Disable backup writing
+set nobackup
+set nowritebackup
+set noundofile
+
+" Enable syntax and numbering
+syntax enable
+set number
+
+" Set tab behaviors
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab 
+set autoindent 
+
+" Enable Folding
+set foldmethod=indent
+set foldlevel=99
+
+" set vertical and horizontal splits
+set splitbelow
+set splitright
+
+set t_Co=256
+
+" color schemes
+if &diff
+    colorscheme palenight
+endif
+
+set background=dark
+colorscheme jellybeans
+
+augroup filetypedetect
+    " cheap Splunk hack, change .conf filetypes to read in
+    " as .ini so there is some colorizations
+    " change newline fileformat to unix because configs are cross platform
+    au BufNewFile,BufRead *.conf 
+        \ setfiletype dosini |
+        \ set fileformat=unix
+    "Python files, we like unix formats
+    "because scripts are cross platform
+    au BufNewFile,BufRead *.py 
+        \ set fileformat=unix |
+        \ set textwidth=79
+augroup END

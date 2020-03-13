@@ -1,0 +1,6 @@
+[submodule "pack/plugins/start/linediff"]
+	path = pack/plugins/start/linediff
+	url = https://github.com/AndrewRadev/linediff.vim.git
+[submodule "pack/plugins/start/diffchanges"]
+	path = pack/plugins/start/diffchanges
+	url = https://github.com/jmcantrell/vim-diffchanges.git
