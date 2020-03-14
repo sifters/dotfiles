@@ -7,9 +7,6 @@
 [submodule "pack/plugins/start/syntastic"]
 	path = pack/plugins/start/syntastic
 	url = https://github.com/vim-syntastic/syntastic.git
-[submodule "/Users/eugene/.vim/pack/plugins/start/lightlinea"]
-	path = /Users/eugene/.vim/pack/plugins/start/lightlinea
-	url = https://github.com/itchyny/lightline.vim
 [submodule "/Users/eugene/.vim/pack/plugins/start/lightline"]
 	path = /Users/eugene/.vim/pack/plugins/start/lightline
 	url = https://github.com/itchyny/lightline.vim
