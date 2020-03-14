@@ -32,6 +32,13 @@ endif
 set background=dark
 colorscheme jellybeans
 
+" lightline configuration
+set laststatus=2
+set noshowmode
+let g:lightline = { 
+\ 'colorscheme': 'jellybeans' 
+\ }
+
 augroup filetypedetect
     " cheap Splunk hack, change .conf filetypes to read in
     " as .ini so there is some colorizations
