@@ -6,6 +6,11 @@ To clone the repository and all related packages, git should be run recursively
 $ git clone --recursive https://github.com/sifters/.vim.git
 ```
 
+Submodules may have to be initialized and updated following the initial clone
+```
+$ git submodule update --init --recursive
+```
+
 ## Packages
 plugins are added as submodules to the .vim/pack/ folder
 
