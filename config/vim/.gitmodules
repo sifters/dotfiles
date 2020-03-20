@@ -10,3 +10,9 @@
 [submodule "pack/plugins/start/lightline"]
 	path = pack/plugins/start/lightline
 	url = https://github.com/itchyny/lightline.vim
+[submodule "/Users/eugene/.vim/pack/plugins/start/nerdtree"]
+	path = /Users/eugene/.vim/pack/plugins/start/nerdtree
+	url = https://github.com/preservim/nerdtree.git
+[submodule "/Users/eugene/.vim/pack/plugins/start/SectionHeader"]
+	path = /Users/eugene/.vim/pack/plugins/start/SectionHeader
+	url = https://github.com/sifters/SectionHeader.git
