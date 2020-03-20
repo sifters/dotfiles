@@ -1,7 +1,7 @@
-" Disable backup writing
-set nobackup
-set nowritebackup
-set noundofile
+" remove additional files
+set backupdir=~/.vimbackup//,/tmp//,.backup/
+set directory=~/.vimswp//,/tmp//,.swp/
+set undodir=~/.vimundo//,/tmp//,.undo/
 
 " Enable syntax and numbering
 syntax enable
