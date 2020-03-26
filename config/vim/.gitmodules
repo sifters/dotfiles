@@ -16,3 +16,6 @@
 [submodule "pack/plugins/start/SectionHeader"]
 	path = pack/plugins/start/SectionHeader
 	url = https://github.com/sifters/SectionHeader.git
+[submodule "pack/plugins/start/vim-gitbranch"]
+	path = pack/plugins/start/vim-gitbranch
+	url = https://github.com/itchyny/vim-gitbranch.git

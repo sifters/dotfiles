@@ -19,6 +19,13 @@ To add a new plugin:
 $ git submodule add https://<git repository>.git .vim/pack/plugins/[start|opt]/<plugin_name>
 ```
 
+Following module additions, rebuilding the help tags inside of vim is needed.  
+This will probably generate an error, but should be fine.
+In Vim:
+```
+: helptags ALL
+```
+
 Adding a plugin to the **start** folder will autoload it; whereas adding it to the **opt** folder will make it available to be loaded within vim
 
 For example (assuming the command is run from the .vim/ folder):
