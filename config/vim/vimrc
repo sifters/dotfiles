@@ -52,7 +52,7 @@ augroup filetypedetect
     " cheap Splunk hack, change .conf filetypes to read in
     " as .ini so there is some colorizations
     " change newline fileformat to unix because configs are cross platform
-    au BufNewFile,BufRead *.conf 
+    au BufNewFile,BufRead *.conf,*/metadata/*.meta 
         \ setfiletype dosini |
         \ set fileformat=unix
     "Python files, we like unix formats
