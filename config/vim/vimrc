@@ -1,7 +1,18 @@
-" remove additional files
-set backupdir=~/.vimbackup//,/tmp//,.backup/
-set directory=~/.vimswp//,/tmp//,.swp/
-set undodir=~/.vimundo//,/tmp//,.undo/
+" set temporary folders; create directories if they do not exist
+set backupdir=~/.vimtmp/vimbackup//,/tmp//,.backup/
+set directory=~/.vimtmp/vimswp//,/tmp//,.swp/
+set undodir=~/.vimtemp/vimundo//,/tmp//,.undo/
+
+function! CheckAndCreateDir(dir)
+    if !isdirectory(a:dir)
+        call mkdir(a:dir, "p")
+    endif
+endfunction
+
+for dir in ["vimbackup","vimswp","vimundo"] 
+    let hdir = $HOME . "/.vimtmp/" . dir
+    call CheckAndCreateDir(hdir)
+endfor
 
 " Enable syntax and numbering
 syntax enable
