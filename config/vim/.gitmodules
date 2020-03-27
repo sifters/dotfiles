@@ -4,6 +4,7 @@
 [submodule "pack/plugins/start/diffchanges"]
 	path = pack/plugins/start/diffchanges
 	url = https://github.com/jmcantrell/vim-diffchanges.git
+    ignore = all
 [submodule "pack/plugins/start/syntastic"]
 	path = pack/plugins/start/syntastic
 	url = https://github.com/vim-syntastic/syntastic.git
@@ -19,6 +20,7 @@
 [submodule "pack/plugins/start/vim-gitbranch"]
 	path = pack/plugins/start/vim-gitbranch
 	url = https://github.com/itchyny/vim-gitbranch.git
+    ignore = all
 [submodule "pack/plugins/start/diffthisbuffer"]
 	path = pack/plugins/start/diffthisbuffer
 	url = https://github.com/sifters/diffthisbuffer.git
