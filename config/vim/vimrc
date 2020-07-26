@@ -66,10 +66,29 @@ let g:lightline = {
 \                ['gitbranch', 'readonly', 'filename', 'modified' ] ]
 \     },
 \ 'component_function' : {
-\     'gitbranch': 'gitbranch#name'
+\     'gitbranch': 'Lightlinebranch'
 \     },
+\ 'separator': { 'left': '', 'right': '' },
+\ 'subseparator': { 'left': '', 'right': '' }
 \ }
 
+function! Lightlinebranch()
+    let l:branch = ' ' . FugitiveHead()
+    return l:branch 
+endfunction
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_markdown_checkers = ['markdown']
+let g:syntastic_cfg_checkers = ['cfg']
+let g:syntastic_dosini_checkers = ['dosini']
 " -----------
 " Auto Groups
 " -----------
