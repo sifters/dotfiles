@@ -16,7 +16,7 @@ plugins are added as submodules to the .vim/pack/ folder
 
 To add a new plugin:
 ```
-$ git submodule add https://<git repository>.git .vim/pack/plugins/[start|opt]/<plugin_name>
+$ git submodule add https://<git repository>.git pack/plugins/[start|opt]/<plugin_name>
 ```
 
 Following module additions, rebuilding the help tags inside of vim is needed.  
@@ -32,4 +32,9 @@ For example (assuming the command is run from the .vim/ folder):
 ```
 $ git submodule add https://github.com/jmcantrell/vim-diffchanges.git pack/plugins/start/diffchanges/
 $ git submodule add https://github.com/AndrewRadev/linediff.vim.git pack/plugins/start/linediff/
+```
+
+To update submodules:
+```
+$ git submodule update --recursive --remote
 ```
