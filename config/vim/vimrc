@@ -36,6 +36,8 @@ set foldlevel=99
 set splitbelow
 set splitright
 set number
+set hlsearch
+set cursorline
 syntax enable
 
 " -------------
