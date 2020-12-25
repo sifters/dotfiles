@@ -75,7 +75,7 @@ let g:lightline = {
 \ }
 
 function! Lightlinebranch()
-    let l:branch = ' ' . FugitiveHead()
+    let l:branch = "\uF418" . " " . FugitiveHead()
     return l:branch 
 endfunction
 
