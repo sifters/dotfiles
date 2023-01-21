@@ -5,9 +5,6 @@
 	path = pack/plugins/start/diffchanges
 	url = https://github.com/jmcantrell/vim-diffchanges.git
     ignore = all
-[submodule "pack/plugins/start/syntastic"]
-	path = pack/plugins/start/syntastic
-	url = https://github.com/vim-syntastic/syntastic.git
 [submodule "pack/plugins/start/lightline"]
 	path = pack/plugins/start/lightline
 	url = https://github.com/itchyny/lightline.vim
@@ -30,9 +27,6 @@
 [submodule "pack/plugins/start/vim-fugitive"]
 	path = pack/plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "pack/plugins/start/syntastic-extras"]
-	path = pack/plugins/start/syntastic-extras
-	url = https://github.com/myint/syntastic-extras.git
 [submodule "pack/plugins/start/vim-ps1"]
 	path = pack/plugins/start/vim-ps1
 	url = https://github.com/PProvost/vim-ps1.git
