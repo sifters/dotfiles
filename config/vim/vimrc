@@ -104,4 +104,6 @@ augroup filetypedetect
     au BufNewFile,BufRead *.py 
         \ set fileformat=unix |
         \ set textwidth=79
+    au BufNewFile,BufRead gitconfig
+        \ setf gitconfig
 augroup END
