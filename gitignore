@@ -1,0 +1,10 @@
+.git/
+*.pyc
+*.swp
+.DS_Store
+.bundle
+.env
+/log
+/tmp
+log/*.log
+tmp/**/*

@@ -1,0 +1,11 @@
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[init]
+	templatedir = ~/dotfiles/git-templates
+	defaultBranch = main
+[fetch]
+    prune = true
+[merge]
+    ff = only

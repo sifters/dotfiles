@@ -1,0 +1,17 @@
+#!/bin/sh
+
+#
+# Automatically push Jira key-based branches to remote repositories
+#
+
+BRANCHES_TO_SKIP=(main master develop)
+BRANCH_NAME=$(git branch --show-current)
+BRANCH_EXCLUDED=$(printf "%s\n" "${BRANCHES_TO_SKIP[@]}" | grep -c "^$BRANCH_NAME$")
+BRANCH_JIRA_KEY=$(echo $BRANCH_NAME | grep -E -o '^([A-Z]+-[0-9]+)')
+
+
+if ! [[ $BRANCH_EXCLUDED -eq 1 ]] && ! [ -z "$BRANCH_JIRA_KEY" ]; then
+  git push -u origin $BRANCH_NAME --quiet
+  echo $BRANCH_NAME pushed to origin
+fi
+
