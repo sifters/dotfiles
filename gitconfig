@@ -9,3 +9,5 @@
     prune = true
 [merge]
     ff = only
+[core]
+    excludesfile = ~/dotfiles/gitignore
