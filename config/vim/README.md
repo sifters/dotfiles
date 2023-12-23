@@ -1,5 +1,11 @@
 # VIM configs
 
+## Requirements
+This repository uses unicode characters that are in reference to [NerdFonts](https://github.com/ryanoasis/nerd-fonts).
+
+YAML linting is configured to use [yamllint](https://github.com/adrienverge/yamllint).
+
+
 ## Cloning This Repository
 To clone the repository and all related packages, git should be run recursively
 ```
@@ -9,6 +15,7 @@ $ git clone --recursive https://github.com/sifters/.vim.git
 Submodules may have to be initialized and updated following the initial clone
 ```
 $ git submodule update --init --recursive
+$ git submodule update --init --recursive --remote --merge
 ```
 
 ## Packages

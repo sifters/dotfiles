@@ -33,3 +33,6 @@
 [submodule "/home/rinalex/.vim/pack/plugins/start/ale"]
 	path = /home/rinalex/.vim/pack/plugins/start/ale
 	url = https://github.com/dense-analysis/ale.git
+[submodule "pack/plugins/start/indentLine"]
+	path = pack/plugins/start/indentLine
+	url = https://github.com/Yggdroot/indentLine.git
