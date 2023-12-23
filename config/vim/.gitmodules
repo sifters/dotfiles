@@ -30,3 +30,6 @@
 [submodule "pack/plugins/start/vim-ps1"]
 	path = pack/plugins/start/vim-ps1
 	url = https://github.com/PProvost/vim-ps1.git
+[submodule "/home/rinalex/.vim/pack/plugins/start/ale"]
+	path = /home/rinalex/.vim/pack/plugins/start/ale
+	url = https://github.com/dense-analysis/ale.git
