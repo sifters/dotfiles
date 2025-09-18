@@ -23,7 +23,7 @@
 	url = https://github.com/sifters/diffthisbuffer.git
 [submodule "pack/plugins/start/vim-splunk"]
 	path = pack/plugins/start/vim-splunk
-	url = git@github.com:sifters/vim-splunk
+    url = https://github.com/sifters/vim-splunk.git
 [submodule "pack/plugins/start/vim-fugitive"]
 	path = pack/plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
@@ -36,3 +36,6 @@
 [submodule "pack/plugins/start/indentLine"]
 	path = pack/plugins/start/indentLine
 	url = https://github.com/Yggdroot/indentLine.git
+[submodule "pack/plugins/start/vim-better-whitespace"]
+	path = pack/plugins/start/vim-better-whitespace
+	url = https://github.com/ntpeters/vim-better-whitespace.git

@@ -1,7 +1,7 @@
 " --------------------------------------------------------------
 " Set temporary folders; create directories if they do not exist
 " --------------------------------------------------------------
- 
+
 set backupdir=~/.vimfiles/vimbackup//,/tmp//,.backup/
 set directory=~/.vimfiles/vimswp//,/tmp//,.swp/
 set undodir=~/.vimfiles/vimundo//,/tmp//,.undo/
@@ -12,7 +12,7 @@ function! CheckAndCreateDir(dir)
     endif
 endfunction
 
-for dir in ["vimbackup","vimswp","vimundo"] 
+for dir in ["vimbackup","vimswp","vimundo"]
     let hdir = $HOME . "/.vimfiles/" . dir
     call CheckAndCreateDir(hdir)
 endfor
@@ -24,11 +24,12 @@ endfor
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab 
-set autoindent 
+set expandtab
+set autoindent
 set foldmethod=indent
 set foldlevel=99
 let g:indentLine_char="\u299A"
+let g:better_whitespace_skip_empty_lines=1
 
 " ----------------------------
 " Splits/Syntax/Line Numbering
@@ -59,7 +60,7 @@ let g:ale_sign_warning = "\uEA87"
 
 if !has('gui_running')
     set t_Co=256
-endif 
+endif
 
 set background=dark
 colorscheme jellybeans
@@ -94,7 +95,7 @@ let g:lightline = {
 
 function! Lightlinebranch()
     let l:branch = "\uF418" . " " . FugitiveHead()
-    return l:branch 
+    return l:branch
 endfunction
 
 set statusline+=%#warningmsg#
@@ -108,17 +109,17 @@ augroup filetypedetect
     " cheap Splunk hack, change .conf filetypes to read in
     " as .ini so there is some colorizations
     " change newline fileformat to unix because configs are cross platform
-    " au BufNewFile,BufRead *.conf,*/metadata/*.meta 
+    " au BufNewFile,BufRead *.conf,*/metadata/*.meta
     "     \ setfiletype dosini |
     "     \ set fileformat=unix
     "Python files, we like unix formats
     "because scripts are cross platform
-    au BufNewFile,BufRead *.py 
+    au BufNewFile,BufRead *.py
         \ set fileformat=unix |
         \ set textwidth=79
     au BufNewFile,BufRead gitconfig
         \ setf gitconfig
-    au BufNewFile,BufRead Makefile 
+    au BufNewFile,BufRead Makefile
         \ set noexpandtab
 augroup END
 
@@ -126,4 +127,5 @@ augroup yaml_fix
     autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
     set foldlevelstart=20
     let g:ale_yaml_yamllint_options = '-d "{extends: relaxed, rules: {line-length: disable}}"'
+    let g:indentLine_char = '⦙'
 augroup END
