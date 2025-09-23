@@ -4,11 +4,14 @@
 	prompt = false
     trustExitCode = true
 [init]
-	templatedir = ~/dotfiles/git-templates
+	# templatedir = $XDG_CONFIG_HOME/git/templates
 	defaultBranch = main
 [fetch]
     prune = true
 [merge]
     ff = only
 [core]
-    excludesfile = ~/dotfiles/gitignore
+	hooksPath = $XDG_CONFIG_HOME/git/hooks
+[user]
+	name = Eugene Rinaldi
+	email = eugene@sifters.net
