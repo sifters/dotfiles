@@ -1,17 +1,19 @@
+[core]
+	hooksPath = $XDG_CONFIG_HOME/git/hooks
 [diff]
 	tool = vimdiff
 [difftool]
 	prompt = false
     trustExitCode = true
+[fetch]
+    prune = true
 [init]
 	# templatedir = $XDG_CONFIG_HOME/git/templates
 	defaultBranch = main
-[fetch]
-    prune = true
 [merge]
     ff = only
-[core]
-	hooksPath = $XDG_CONFIG_HOME/git/hooks
 [user]
 	name = Eugene Rinaldi
 	email = eugene@sifters.net
+[credential]
+	helper = store --file=${XDG_DATA_HOME}/git/credentials
