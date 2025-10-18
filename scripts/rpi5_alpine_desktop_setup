@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# remove getty from running on tty1 so sddm can start
+sed -i -r 's/^(tty1.*getty)/# \1/' /etc/inittab
