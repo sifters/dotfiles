@@ -1,4 +1,19 @@
+# Exports
 export  GOPATH=~/go
+
+
+# Set up History
+HISTFILE=${XDG_STATE_HOME}/zsh_history
+HISTFILESIZE=2000
+HISTSIZE=2000
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
+
+
+# Powerline-Go
 function powerline_precmd() {
     PS1="$($GOPATH/bin/powerline-go -error $? -jobs ${${(%):%j}:-0})"
     PS1="$($GOPATH/bin/powerline-go -theme gruvbox -cwd-max-depth 2 -modules venv,host,ssh,cwd,perms,git,exit,root)"
@@ -17,8 +32,13 @@ if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
     install_powerline_precmd
 fi
 
+# Aliases
 alias ll='ls -lah --color'
 
-if [[ -d $ZDOSTDIR/.zsh_functions ]]; then
+if [[ -f $ZDOTDIR/.zsh_functions ]]; then
     source $ZDOTDIR/.zsh_functions
+fi
+
+if [[ -f $ZDOTDIR/.zsh_aliases ]]; then
+    source $ZDOTDIR/.zsh_aliases
 fi
