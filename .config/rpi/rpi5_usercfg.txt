@@ -1,0 +1,18 @@
+# For Raspberry Pi systems, this file needs to be copied to /boot 
+# to enable desktop experiences; it is not needed for headless
+
+# Enable kernel output to serial console for troubleshooting
+enable_uart=1
+
+# Enable Audio output
+dtparam=audio=on
+
+# Enable kernel graphics driver
+dtoverlay=vc4-kms-v3d
+
+# Enable two displays
+max_framebuffers=2
+
+# Have linux video mode system to parse the EDID
+# Raspberry Pi 5 sets this to 1 by default
+# disable_fw_kms_setup=1

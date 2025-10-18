@@ -1,0 +1,194 @@
+#/bin/bash
+#cp -n ../.config/rpi/rpi5_usercfg.txt /boot/usercfg.txt
+
+# Initialize Variables
+FORCE_COPY=false
+APPEND=false
+
+# Set up script paths
+SCRIPT_DIR="$(dirname "$0")"
+SOURCE="$SCRIPT_DIR/../.config/rpi/rpi5_usercfg.txt"
+DEST_FILE="/boot/usercfg.txt"
+
+
+# Help Information
+usage() {
+    echo "Usage: $0 [OPTIONS]"
+    echo ""
+    echo "Copies $SOURCE to $DEST"
+    echo ""
+    echo "Options:"
+    echo "  -f, --force     Overwirte configurations if they exist"
+    echo "  -a, --append    Append to existing file if it exists"
+    echo "  -h, --help      Display this help message"
+    exit 1
+}
+
+# Create backup
+create_backup() {
+    local file_to_backup="$1"
+    local backup_file="${file_to_backup}.backup.$(date +%Y%m%d_%H%M%S)"
+    echo "Creating backup: $backup_file"
+    if ! cp "$file_to_backup" "$backup_file"; then
+        echo "Error: Failed to create backup"
+        exit 1
+    fi
+}
+
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -f|--force)
+            FORCE_COPY=true
+            shift
+            ;;
+        -a|--append)
+            APPEND=true
+            shift
+            ;;
+        -h|--help)
+            usage
+            ;;
+        -*)
+            echo "Error: Unknown option $1"
+            usage
+            ;;
+        *)
+            echo "Error: Unknown argument '$1'"
+            usage
+            ;;
+    esac
+done
+
+
+# Check if source file exists
+if [[ ! -f "$SOURCE" ]]; then
+    echo "Error: Source file '$SOURCE' does not exist"
+    exit 1
+fi
+
+# Check if source file is readable
+if [[ ! -r "$SOURCE" ]]; then
+    echo "Error: Cannot read source file '$SOURCE'"
+    echo "Permission denied. You need read access to the source file."
+    exit 1
+fi
+
+# Check if we have write permission to /boot directory
+DEST_DIR="/boot"
+if [[ ! -d "$DEST_DIR" ]]; then
+    echo "Error: Destination directory '$DEST_DIR' does not exist"
+    exit 1
+fi
+
+if [[ ! -w "$DEST_DIR" ]]; then
+    echo "Error: Cannot write to destination directory '$DEST_DIR'"
+    echo "Permission denied. You need write access to /boot directory."
+    if [[ $EUID -ne 0 ]]; then
+        echo "Try running with sudo or as root user."
+    fi
+    exit 1
+fi
+
+# Get the filename from source path
+FILENAME=$(basename "$SOURCE")
+
+# Check if destination file exists
+if [[ -f "$DEST_FILE" ]]; then
+    # Test if files are identical
+    if diff -q "$SOURCE" "$DEST_FILE" > /dev/null 2>&1; then
+        echo "Files are identical. No action needed."
+        exit 0
+    fi
+
+    # If files are different, show the changes
+    echo "File '$DEST_FILE' already exists."
+    echo ""
+    echo "Differences between source and destination:"
+    echo "-------------------------------------------"
+    diff -u "$DEST_FILE" "$SOURCE" || true
+    echo "-------------------------------------------"
+    echo ""
+
+    # File exists - check what to do
+    if [[ "$APPEND" = true ]]; then
+        # Append mode
+        echo "Creating backup: $BACKUP_FILE"
+        create_backup "$DEST_FILE"
+        echo "Appending '$SOURCE' to existing file '$DEST_FILE'..."
+        if cat "$SOURCE" >> "$DEST_FILE"; then
+            echo "Successfully appended to '$DEST_FILE'"
+            exit 0
+        else
+            echo "Error: Failed to append to file"
+            exit 1
+        fi
+    elif [[ "$FORCE_COPY" = true ]]; then
+        # Force overwrite
+        echo "Force flag detected. Overwriting '$DEST_FILE'..."
+        echo "Creating backup: $BACKUP_FILE"
+        create_backup "$DEST_FILE"
+        if cp "$SOURCE" "$DEST_FILE"; then
+            echo "Successfully copied '$SOURCE' to '$DEST_FILE'"
+            exit 0
+        else
+            echo "Error: Failed to copy file"
+            exit 1
+        fi
+    else
+        # No flags found; prompt user
+        echo "Warning: File '$DEST_FILE' already exists!"
+        echo "What would you like to do?"
+        echo "  [F]orce overwrite"
+        echo "  [A]ppend to existing file"
+        echo "  [Q]uit (abort operation)"
+        echo ""
+        read -p "Enter your choice (F/A/Q): " -n 1 -r
+        echo ""
+        case $REPLY in
+            [Ff])
+                echo "Overwriting '$DEST_FILE'..."
+                echo "Creating backup: $BACKUP_FILE"
+                create_backup "$DEST_FILE"
+                if cp "$SOURCE" "$DEST_FILE"; then
+                    echo "Successfully copied '$SOURCE' to '$DEST_FILE'"
+                    exit 0
+                else
+                    echo "Error: Failed to copy file"
+                    exit 1
+                fi
+                ;;
+            [Aa])
+                echo "Appending '$SOURCE' to existing file '$DEST_FILE'..."
+                echo "Creating backup: $BACKUP_FILE"
+                create_backup "$DEST_FILE"
+                if cat "$SOURCE" >> "$DEST_FILE"; then
+                    echo "Successfully appended to '$DEST_FILE'"
+                    exit 0
+                else
+                    echo "Error: Failed to append to file"
+                    exit 1
+                fi
+                ;;
+            [Qq])
+                echo "Operation aborted by user."
+                exit 0
+                ;;
+            *)
+                echo "Invalid choice. Operation aborted."
+                exit 1
+                ;;
+        esac
+    fi
+else
+    # File doesn't exist - proceed with copy
+    echo "Copying '$SOURCE' to '$DEST_FILE'..."
+    if cp "$SOURCE" "$DEST_FILE"; then
+        echo "Successfully copied '$SOURCE' to '$DEST_FILE'"
+        exit 0
+    else
+        echo "Error: Failed to copy file"
+        exit 1
+    fi
+fi
