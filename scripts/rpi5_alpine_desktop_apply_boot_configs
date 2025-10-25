@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 # Update the /boot/usercfg.txt file to agree to the contents in .config/
 # If configurations are existing, the script can append or
 # overwrite the contents in /boot.  A backup of any existing file
