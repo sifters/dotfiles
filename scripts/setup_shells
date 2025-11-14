@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Setup variables; discover where this script is in the filesystem
+TARGETDIR=$(cd "$(dirname "$0")/../.config/"; pwd)
+# additional iterations that may be viable:
+# SCRIPTDIR="$(dirname "$0")"
+# SCRIPT_DIR=$(readlink -f ${0%/*})
+
+# Symlink zsh env to dotfiles directory
+# ZShell will not look for the environment file in XDG directories by default
+ln -s ~/.zshenv $TARGETDIR/zsh/.zshenv
+
+# TODO - setup bash so bash_history is in XDG
