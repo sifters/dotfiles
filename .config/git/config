@@ -12,6 +12,8 @@
 	defaultBranch = main
 [merge]
     ff = only
+[pager]
+    branch = false
 [user]
 	name = Eugene Rinaldi
 	email = eugene@sifters.net
