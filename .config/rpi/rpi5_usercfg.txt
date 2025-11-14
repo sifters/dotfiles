@@ -16,3 +16,6 @@ max_framebuffers=2
 # Have linux video mode system to parse the EDID
 # Raspberry Pi 5 sets this to 1 by default
 # disable_fw_kms_setup=1
+
+# Enable cgroups for kubernetes
+cgroup_memory=1 cgroup_enable=memory
