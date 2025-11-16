@@ -8,6 +8,23 @@ TARGETDIR=$(cd "$(dirname "$0")/../.config/"; pwd)
 
 # Symlink zsh env to dotfiles directory
 # ZShell will not look for the environment file in XDG directories by default
-ln -s ~/.zshenv $TARGETDIR/zsh/.zshenv
+ln -s ~/.zshenv $TARGETDIR/zsh/.zshenv 2> /dev/null
+
+completions=(kubectl podman argocd argo k3s k9s kind minikube)
+completion_dir_zsh="$TARGETDIR/zsh/.zsh_completions"
+
+for cmd in "${completions[@]}"; do
+    if command -v "$cmd" $> /dev/null; then
+        "$cmd" completion zsh > "${completion_dir_zsh}/_${cmd}"
+    else
+        echo "$cmd not found, skipping shell completion"
+    fi
+done
+
+if command -v gh &> /dev/null; then
+    gh completion -s zsh > "${completion_dir_zsh}/_gh" 
+else
+    echo "gh not found, skipping shell completion"
+fi
 
 # TODO - setup bash so bash_history is in XDG
