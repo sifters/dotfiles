@@ -8,4 +8,6 @@ ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 fpath=($ZDOTDIR/.zsh_completions $fpath)
 
 # Load NVM - temporary
-source $HOME/.profile
+if [ -f $HOME/.profile ]; then
+    source $HOME/.profile
+fi
