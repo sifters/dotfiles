@@ -28,4 +28,10 @@ else
     echo "gh not found, skipping shell completion"
 fi
 
+if command -v go &> /dev/null; then
+    go install github.com/justjanne/powerline-go@latest
+else
+    echo "go not found; skipping powerline insatllation"
+fi
+
 # TODO - setup bash so bash_history is in XDG
