@@ -20,3 +20,7 @@ echo $sshdir
 chmod 600 "${sshdir}/authorized_keys"
 chmod 700 "${sshdir}"
 
+### TODO: read the ssh config file and determine if the include statement is already present
+echo "Include ~/.ssh/config.d/*" >> ~/.ssh/config && chmod 600 "${sshdir}/config"
+
+
