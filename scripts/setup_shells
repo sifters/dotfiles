@@ -11,8 +11,8 @@ TARGETDIR=$(cd "$(dirname "$0")/../.config/"; pwd)
 ln -s $TARGETDIR/zsh/.zshenv ~/.zshenv 2> /dev/null
 
 completions=(kubectl podman argocd argo k3s k9s kind minikube)
-completion_dir_zsh="$TARGETDIR/zsh/.zsh_completions"
-mkdir -p ${completion_dir_zsh}
+completion_dir_zsh="$XDG_CACHE_HOME/zsh/zsh_completions"
+[[ -d $completion_dir_zsh ]] || mkdir -p ${completion_dir_zsh}
 
 for cmd in "${completions[@]}"; do
     if command -v "$cmd" $> /dev/null; then

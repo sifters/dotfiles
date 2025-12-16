@@ -5,7 +5,6 @@ export XDG_STATE_HOME=$HOME/.local/state
 export PATH=$HOME/.local/bin:$PATH
 export KUBECONFIG=$HOME/.kube/config
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-fpath=($ZDOTDIR/.zsh_completions $fpath)
 
 # Load NVM - temporary
 if [ -f $HOME/.profile ]; then
