@@ -1,0 +1,22 @@
+#!/bin/bash
+TARGETDIR=$(cd "$(dirname "$0")/../.config/"; pwd)
+echo $TARGETDIR
+
+# symlink configuration directories
+links=(git zsh kparsrc)
+for link in "${links[@]}"; do
+    ln -s "${TARGETDIR}/${link}" "${HOME}/.config/${link}"
+done
+
+# Set up SSH defaults
+sshdir=${HOME}/.ssh
+echo $sshdir
+
+# test if objects exist; if they do not, create them and set permissions
+[[ -d ${sshdir} ]] || mkdir -m 700 -p "${sshdir}"
+[[ -d ${sshdir}/config.d ]] || mkdir -m 600 -p "${sshdir}/config.d"
+[[ -d ${sshdir}/keys ]] || mkdir -m 600 -p "${sshdir}/keys"
+[[ -f ${sshdir}/authorized_keys ]] || touch "${sshdir}/authorized_keys"
+chmod 600 "${sshdir}/authorized_keys"
+chmod 700 "${sshdir}"
+
