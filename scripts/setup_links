@@ -3,9 +3,9 @@ TARGETDIR=$(cd "$(dirname "$0")/../.config/"; pwd)
 echo $TARGETDIR
 
 # symlink configuration directories
-links=(git zsh kparsrc)
+links=(git zsh kate/kpartsrc plasma-workspace/env/mozilla_firefox.sh)
 for link in "${links[@]}"; do
-    ln -s "${TARGETDIR}/${link}" "${HOME}/.config/${link}"
+    [[ -e ${HOME}/.config/${link} ]] || ln -s "${TARGETDIR}/${link}" "${HOME}/.config/${link}"
 done
 
 # Set up SSH defaults
