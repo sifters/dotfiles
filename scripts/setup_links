@@ -5,7 +5,7 @@ xdg_config="${XDG_CONFIG_HOME:-${HOME}/.config}" # if XDG_CONFIG_HOME is set, us
 echo $xdg_config
 
 # symlink configuration directories
-links=(git zsh kate/kpartsrc plasma-workspace/env/mozilla_firefox.sh)
+links=(git zsh kate/kpartsrc plasma-workspace/env/mozilla_firefox.sh powerline-go/themes/nord.json)
 for link in "${links[@]}"; do
     # If the link has subfolders, create them if they do not exist.
     #     We do this so that individual known files are symlinked, not the directory where the
