@@ -4,6 +4,7 @@ ZSH_CACHE=${XDG_CACHE_HOME}/zsh
 ZSH_STATE=${XDG_STATE_HOME}/zsh
 fpath=($ZSH_CACHE/zsh_completions $fpath)
 
+# Create the folders if they do not exist
 for d ($ZSH_CACHE $ZSH_STATE $ZSH_CACHE/zsh_completions); do
     [[ -d $d ]] || mkdir -p $d
 done
@@ -12,17 +13,21 @@ done
 HISTFILE=${ZSH_STATE}/zsh_history
 HISTFILESIZE=2000
 HISTSIZE=2000
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_FIND_NO_DUPS
-setopt SHARE_HISTORY
-setopt INC_APPEND_HISTORY
+SAVEHIST=2000
+setopt HIST_EXPIRE_DUPS_FIRST   # Delete duplicates first when rotating history file
+setopt HIST_IGNORE_ALL_DUPS     # Ignore duplicates when writing history
+setopt HIST_FIND_NO_DUPS        # When searching (CTRL+R); ignore duplicates
+setopt SHARE_HISTORY            # Share history across sessions
+setopt INC_APPEND_HISTORY       # Append each line to history file; do not wait to exit
+
+# Additional shell options
+setopt GLOBDOTS             # inlude hidden files
 
 
-# Configure Powerline-Go
+# Prompt Setup: Configure Powerline-Go
 function powerline_precmd() {
-    PS1="$($GOPATH/bin/powerline-go -error $? -jobs ${${(%):%j}:-0})"
-    PS1="$($GOPATH/bin/powerline-go -theme gruvbox -cwd-max-depth 2 -modules venv,host,ssh,cwd,perms,git,exit,root)"
+    PS1="$($GOPATH/bin/powerline-go -theme $XDG_CONFIG_HOME/powerline-go/themes/nord.json -cwd-max-depth 3 -cwd-mode fancy -modules venv,host,ssh,cwd,perms,git,exit,root -error $? -jobs ${(%):-"%j"} )"
+    set "?"
 }
 
 function install_powerline_precmd() {
@@ -37,16 +42,17 @@ function install_powerline_precmd() {
 if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
     install_powerline_precmd
 fi
+#############
 
 # Initialize Shell Completion
 autoload -U compinit; compinit -d $ZSH_CACHE/zcompdump-$ZSH_VERSION
 
-# Additional import
-if [[ -f $ZDOTDIR/.zsh_functions ]]; then
-    source $ZDOTDIR/.zsh_functions
-fi
-
-if [[ -f $ZDOTDIR/.zsh_aliases ]]; then
-    source $ZDOTDIR/.zsh_aliases
-fi
+# Additional imports
+zdot_imports=(.zsh_functions .zsh_aliases)
+for import in $zdot_imports; do
+    if [[ -f $ZDOTDIR/$import ]]; then
+        source $ZDOTDIR/$import
+    fi
+done
+unset zdot_imports
 

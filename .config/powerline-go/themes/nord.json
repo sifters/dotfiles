@@ -1,0 +1,65 @@
+{
+
+   "BoldForeground": false,
+   "Reset": 255,
+   "UsernameBg":239,
+   "UsernameFg":253,
+
+   "UsernameRootBg":167,
+
+   "HostnameFg":253,
+   "HostnameBg":236,
+   "HomeSpecialDisplay": true,
+
+   "HomeBg":110,
+   "HomeFg":255,
+   "PathBg":236,
+   "PathFg":253,
+   "CwdFg":253,
+   "SeparatorFg":239,
+
+   "ReadonlyBg":167,
+   "ReadonlyFg":255,
+
+   "SshBg":173,
+   "SshFg":255,
+
+   "RepoCleanBg":150,
+   "RepoCleanFg":237,
+   "RepoDirtyBg":167,
+   "RepoDirtyFg":255,
+
+   "JobsFg":68,
+   "JobsBg":236,
+
+   "CmdPassedBg":236,
+   "CmdPassedFg":255,
+   "CmdFailedBg":179,
+   "CmdFailedFg":255,
+
+   "SvnChangesBg":255,
+   "SvnChangesFg":167,
+
+   "GitAheadBg":239,
+   "GitAheadFg":253,
+   "GitBehindBg":239,
+   "GitBehindFg":253,
+
+   "GitStagedBg":109,
+   "GitStagedFg":237,
+   "GitNotstagedBg":173,
+   "GitNotstagedFg":255,
+   "GitUntrackedBg":139,
+   "GitUntrackedFg":255,
+   "GitConflictedBg":167,
+   "GitConflictedFg":255,
+
+   "GitStashBg":179,
+   "GitStashFg":237,
+
+   "VirtualEnvBg":150,
+   "VirtualEnvFg":237,
+
+   "TimeBg":239,
+   "TimeFg":253
+}
