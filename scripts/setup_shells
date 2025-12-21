@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Setup variables; discover where this script is in the filesystem
-TARGETDIR=$(cd "$(dirname "$0")/../.config/"; pwd)
+TARGETDIR=$(cd "$(dirname "$0")/../config/"; pwd)
 # additional iterations that may be viable:
 # SCRIPTDIR="$(dirname "$0")"
 # SCRIPT_DIR=$(readlink -f ${0%/*})

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-target_dir=$(cd "$(dirname "$0")/../.config/"; pwd) # set target directory relative to this script's location
+target_dir=$(cd "$(dirname "$0")/../config/"; pwd) # set target directory relative to this script's location
 xdg_config="${XDG_CONFIG_HOME:-${HOME}/.config}" # if XDG_CONFIG_HOME is set, use it - otherwise hardcode it
 echo $xdg_config
 
