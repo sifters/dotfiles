@@ -1,5 +1,5 @@
 # Exports
-export  GOPATH=~/go
+export GOPATH=${XDG_DATA_HOME}/go
 ZSH_CACHE=${XDG_CACHE_HOME}/zsh
 ZSH_STATE=${XDG_STATE_HOME}/zsh
 fpath=($ZSH_CACHE/zsh_completions $fpath)
@@ -26,7 +26,8 @@ setopt GLOBDOTS             # inlude hidden files
 
 # Prompt Setup: Configure Powerline-Go
 function powerline_precmd() {
-    PS1="$($GOPATH/bin/powerline-go -theme $XDG_CONFIG_HOME/powerline-go/themes/nord.json -cwd-max-depth 3 -cwd-mode fancy -modules venv,host,ssh,cwd,perms,git,exit,root -error $? -jobs ${(%):-"%j"} )"
+    PS1="$($GOPATH/bin/powerline-go -mode $XDG_CONFIG_HOME/powerline-go/modes/test.json -theme $XDG_CONFIG_HOME/powerline-go/themes/nord.json -cwd-max-depth 3 -cwd-mode fancy -modules venv,host,ssh,cwd,perms,git,exit,root -error $? -jobs ${(%):-"%j"} )"
+    PS1="$($GOPATH/bin/powerline-go -mode patched -theme $XDG_CONFIG_HOME/powerline-go/themes/nord.json -cwd-max-depth 3 -cwd-mode fancy -modules venv,host,ssh,cwd,perms,git,exit,root -error $? -jobs ${(%):-"%j"} )"
     set "?"
 }
 
