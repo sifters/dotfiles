@@ -1,5 +1,5 @@
 # Aliases (not functions)
 
-alias ll='ls -lah --color=auto'
+alias ll='LC_COLLATE=C ls -lahF --color=auto' #Sort dotfiles first
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
