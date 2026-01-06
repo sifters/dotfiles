@@ -8,7 +8,7 @@ TARGETDIR=$(cd "$(dirname "$0")/../config/"; pwd)
 
 # Symlink zsh env to dotfiles directory
 # ZShell will not look for the environment file in XDG directories by default
-ln -s $TARGETDIR/zsh/.zshenv ~/.zshenv 2> /dev/null
+ln -sf $TARGETDIR/zsh/.zshenv ~/.zshenv 2> /dev/null
 
 completions=(kubectl podman argocd argo k3s k9s kind minikube)
 completion_dir_zsh="$XDG_CACHE_HOME/zsh/zsh_completions"
