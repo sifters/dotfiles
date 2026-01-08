@@ -1,4 +1,4 @@
-# Specify XDG Variables
+# Specify XDG Variables - redundant because of environment.d
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
@@ -18,6 +18,9 @@ export KUBECACHEDIR=$XDG_CACHE_HOME/kube
 export PYTHON_HISTORY=$XDG_STATE_HOME/python_history
 export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
 export PYTHONUSERBASE=$XDG_DATA_HOME/python
+
+# sqlite3
+export SQLITE_HISTORY=$XDG_STATE_HOME/sqlite_history
 
 # Load NVM - temporary
 if [ -f $HOME/.profile ]; then
