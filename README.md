@@ -1,4 +1,5 @@
 # Dotfiles
+t
 
 ## Format
 Attempts to use [XDG (Cross-Desktop Group) Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/latest/) to manage dotfiles.
