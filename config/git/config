@@ -24,3 +24,10 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[alias]
+    br = branch
+    ci = commit
+    cm = commit -m
+	st = status -sb
+    rv = remote -v
+    last = log -1 HEAD --stat --patch
