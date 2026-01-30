@@ -1,0 +1,8 @@
+# Aliases (not functions)
+
+alias ll='LC_COLLATE=C ls -lahF --color=auto' #Sort dotfiles first
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+
+alias cddev='cd ~/dev'
+alias cdd='cd ~/dev'

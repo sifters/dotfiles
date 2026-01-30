@@ -4,3 +4,9 @@ This file is read first and sets up the variables to point ZSH to read from the 
 configuration files using the ZDOTDIR environment variables. 
 
 Also contained within this file are the environment variables to set up XDG.
+
+## Shell Completions
+Shell completion scripts are added to the directory zsh_completions.  These must have
+a prefix of an underscore.
+While the contents can be loaded into the repository, it may be better to perform
+scripted routines to run the completions.

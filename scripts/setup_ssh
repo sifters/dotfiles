@@ -1,0 +1,8 @@
+#!/bin/bash
+
+sshdir=${HOME}/.ssh
+mkdir -m 700 -p "${sshdir}"
+mkdir -m 700 -p "${sshdir}/config.d"
+mkdir -m 700 -p "${sshdir}/keys"
+touch "${sshdir}/authorized_keys" && chmod 600 "${sshdir}/authorized_keys"
+echo "Include ~/.ssh/config.d/*" >> ~/.ssh/config && chmod 600 "${sshdir}/config"

@@ -1,0 +1,34 @@
+# Global git
+.git/
+
+# Vim Swap
+*.swp
+
+# Logs
+/log
+log/*.log
+
+# temporary directories
+/tmp
+tmp/**/*
+
+# MacOS
+.DS_Store
+.DS_Store/*
+
+# VSCode Project
+.vscode/
+**/.vscode/
+.vscode/*
+
+# Jetbrains Project
+.idea/*
+
+## Python Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# Python Environments
+.venv
+venv/

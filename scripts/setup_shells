@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Setup variables; discover where this script is in the filesystem
+TARGETDIR=$(cd "$(dirname "$0")/../config/"; pwd)
+# additional iterations that may be viable:
+# SCRIPTDIR="$(dirname "$0")"
+# SCRIPT_DIR=$(readlink -f ${0%/*})
+
+# Symlink zsh env to dotfiles directory
+# ZShell will not look for the environment file in XDG directories by default
+ln -sf $TARGETDIR/zsh/.zshenv ~/.zshenv 2> /dev/null
+
+completions=(kubectl podman argocd argo k3s k9s kind minikube)
+completion_dir_zsh="$XDG_CACHE_HOME/zsh/zsh_completions"
+[[ -d $completion_dir_zsh ]] || mkdir -p ${completion_dir_zsh}
+
+for cmd in "${completions[@]}"; do
+    if command -v "$cmd" $> /dev/null; then
+        "$cmd" completion zsh > "${completion_dir_zsh}/_${cmd}"
+    else
+        echo "$cmd not found, skipping shell completion"
+    fi
+done
+
+if command -v gh &> /dev/null; then
+    gh completion -s zsh > "${completion_dir_zsh}/_gh" 
+else
+    echo "gh not found, skipping shell completion"
+fi
+
+if command -v go &> /dev/null; then
+    go install github.com/justjanne/powerline-go@latest
+else
+    echo "go not found; skipping powerline insatllation"
+fi
+
+# TODO - setup bash so bash_history is in XDG

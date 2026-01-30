@@ -1,0 +1,36 @@
+#!/bin/bash
+
+target_dir=$(cd "$(dirname "$0")/../config/"; pwd) # set target directory relative to this script's location
+xdg_config="${XDG_CONFIG_HOME:-${HOME}/.config}" # if XDG_CONFIG_HOME is set, use it - otherwise hardcode it
+echo $xdg_config
+
+# symlink configuration directories
+links=(git zsh kate/kpartsrc plasma-workspace/env/mozilla_firefox.sh powerline-go/themes/nord.json environment.d)
+for link in "${links[@]}"; do
+    # If the link has subfolders, create them if they do not exist.
+    #     We do this so that individual known files are symlinked, not the directory where the
+    #     application may add it's own files.
+    destination_dir="$(dirname "${xdg_config}/${link}")"
+    [[ -d "${destination_dir}" ]] || mkdir -p "${destination_dir}"
+
+    # Test if file/directory exists; if not them symlink it
+    [[ -e ${xdg_config}/${link} ]] || ln -sf "${target_dir}/${link}" "${HOME}/.config/${link}"
+done
+
+# Set up SSH defaults
+sshdir=${HOME}/.ssh
+
+# test if objects exist; if they do not, create them and set permissions
+[[ -d ${sshdir} ]] || mkdir -m 700 -p "${sshdir}"
+[[ -d ${sshdir}/config.d ]] || mkdir -m 600 -p "${sshdir}/config.d"
+[[ -d ${sshdir}/keys ]] || mkdir -m 600 -p "${sshdir}/keys"
+[[ -f ${sshdir}/authorized_keys ]] || touch "${sshdir}/authorized_keys"
+chmod 600 "${sshdir}/authorized_keys"
+chmod 700 "${sshdir}"
+ln -sf "${target_dir}/ssh/github.conf" "$HOME/.ssh/config.d/github.conf"
+
+# If the include statement does not exist, append it
+# Matches on the whole line, and will create the file if it does not exist
+# Update permssions
+include_statement="Include ~/.ssh/config.d/*"
+grep -qsxF "$include_statement" "$sshdir/config" || echo "$include_statement" >> ~/.ssh/config && chmod 600 "${sshdir}/config"

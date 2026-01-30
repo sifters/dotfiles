@@ -1,0 +1,33 @@
+[core]
+	hooksPath = ~/.config/git/hooks
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+    trustExitCode = true
+[fetch]
+    prune = true
+[init]
+	# templatedir = ~/.config/git/templates
+	defaultBranch = main
+[merge]
+    ff = only
+[pager]
+    branch = false
+[user]
+	name = Eugene Rinaldi
+	email = eugene@sifters.net
+[credential]
+	helper = store --file=~/.local/share/git/credentials
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[alias]
+    br = branch
+    ci = commit
+    cm = commit -m
+	st = status -sb
+    rv = remote -v
+    last = log -1 HEAD --stat --patch
