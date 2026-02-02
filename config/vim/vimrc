@@ -1,0 +1,127 @@
+" --------------------------------------------------------------
+" Set temporary folders; create directories if they do not exist
+" --------------------------------------------------------------
+
+for dir in ["backup","swp","undo"] 
+    call mkdir($XDG_CACHE_HOME . "/vim/" . dir, 'p')
+endfor
+ 
+call mkdir($XDG_STATE_HOME . "/vim/", 'p')
+
+set backupdir=$XDG_CACHE_HOME/vim/backup//,/tmp//,.backup//
+set directory=$XDG_CACHE_HOME/vim/swp//,/tmp//,.swp//
+set undodir=$XDG_CACHE_HOME/vim/undo//,/tmp//,.undo/
+set viminfofile=$XDG_STATE_HOME/vim/viminfo,~/viminfo
+
+" -------------------
+" Indenting / Folding
+" -------------------
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set foldmethod=indent
+set foldlevel=99
+let g:indentLine_char="\u299A"
+let g:better_whitespace_skip_empty_lines=1
+
+" ----------------------------
+" Splits/Syntax/Line Numbering
+" ----------------------------
+
+set splitbelow
+set splitright
+set number
+set hlsearch
+set cursorline
+syntax enable
+
+" -------------
+" ALE / Linting
+" -------------
+
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_sign_error = "\uF071"
+let g:ale_sign_warning = "\uEA87"
+" Standard unicode below
+" let g:ale_sign_error = "\u2718"
+" let g:ale_sign_warning = "\u26A0"
+
+" -------------
+" Color Schemes
+" -------------
+
+if !has('gui_running')
+    set t_Co=256
+endif
+
+set background=dark
+colorscheme jellybeans
+
+if &diff
+    colorscheme palenight
+endif
+
+" -----------------
+" Terminal Settings
+" -----------------
+set termwinsize=12x0
+
+" -----------------------
+" Lightline Configuration
+" -----------------------
+
+set laststatus=2
+set noshowmode
+let g:lightline = { 
+\ 'colorscheme' : 'nord' ,
+\ 'active' : {
+\     'left' : [ ['mode', 'paste' ],
+\                ['gitbranch', 'readonly', 'filename', 'modified' ] ]
+\     },
+\ 'component_function' : {
+\     'gitbranch': 'Lightlinebranch'
+\     },
+\ 'separator': { 'left': '', 'right': '' },
+\ 'subseparator': { 'left': '', 'right': '' }
+\ }
+
+function! Lightlinebranch()
+    let l:branch = "\uF418" . " " . FugitiveHead()
+    return l:branch
+endfunction
+
+set statusline+=%#warningmsg#
+set statusline+=%*
+
+" -----------
+" Auto Groups
+" -----------
+
+augroup filetypedetect
+    " cheap Splunk hack, change .conf filetypes to read in
+    " as .ini so there is some colorizations
+    " change newline fileformat to unix because configs are cross platform
+    " au BufNewFile,BufRead *.conf,*/metadata/*.meta
+    "     \ setfiletype dosini |
+    "     \ set fileformat=unix
+    "Python files, we like unix formats
+    "because scripts are cross platform
+    au BufNewFile,BufRead *.py
+        \ set fileformat=unix |
+        \ set textwidth=79
+    au BufNewFile,BufRead gitconfig
+        \ setf gitconfig
+    au BufNewFile,BufRead Makefile
+        \ set noexpandtab
+augroup END
+
+augroup yaml_fix
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
+    set foldlevelstart=20
+    let g:ale_yaml_yamllint_options = '-d "{extends: relaxed, rules: {line-length: disable}}"'
+    let g:indentLine_char = '⦙'
+augroup END
