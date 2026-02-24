@@ -1,7 +1,4 @@
 # Exports
-export GOPATH=${XDG_DATA_HOME}/go
-ZSH_CACHE=${XDG_CACHE_HOME}/zsh
-ZSH_STATE=${XDG_STATE_HOME}/zsh
 fpath=($ZSH_CACHE/zsh_completions $fpath)
 
 # Create the folders if they do not exist

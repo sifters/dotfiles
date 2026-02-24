@@ -1,1 +1,22 @@
 # ZSH Functions
+function code {
+    if   whence -p codium > /dev/null; then
+        command codium --extensions-dir "$XDG_DATA_HOME/vscode/extensions" "$@"
+    elif whence -p code   > /dev/null; then
+        command code --extensions-dir "$XDG_DATA_HOME/vscode/extensions" "$@"
+    else
+        echo "Error: Code / Codium not installed; aborting" >&2
+        return 1
+    fi
+}
+
+function codium {
+    if   whence -p codium > /dev/null; then
+        command codium --extensions-dir "$XDG_DATA_HOME/vscode" "$@"
+    elif whence -p code   > /dev/null; then
+        command code --extensions-dir "$XDG_DATA_HOME/vscode" "$@"
+    else
+        echo "Error: Code / Codium not installed; aborting" >&2
+        return 1
+    fi
+}
