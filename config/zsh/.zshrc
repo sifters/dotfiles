@@ -20,28 +20,6 @@ setopt INC_APPEND_HISTORY       # Append each line to history file; do not wait 
 # Additional shell options
 setopt GLOBDOTS             # inlude hidden files
 
-
-# Prompt Setup: Configure Powerline-Go
-function powerline_precmd() {
-    PS1="$($GOPATH/bin/powerline-go -mode $XDG_CONFIG_HOME/powerline-go/modes/test.json -theme $XDG_CONFIG_HOME/powerline-go/themes/nord.json -cwd-max-depth 3 -cwd-mode fancy -modules venv,host,ssh,cwd,perms,git,exit,root -error $? -jobs ${(%):-"%j"} )"
-    PS1="$($GOPATH/bin/powerline-go -mode patched -theme $XDG_CONFIG_HOME/powerline-go/themes/nord.json -cwd-max-depth 3 -cwd-mode fancy -modules venv,host,ssh,cwd,perms,git,exit,root -error $? -jobs ${(%):-"%j"} )"
-    set "?"
-}
-
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
-
-if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
-    install_powerline_precmd
-fi
-#############
-
 # Initialize Shell Completion
 autoload -U compinit; compinit -d $ZSH_CACHE/zcompdump-$ZSH_VERSION
 
@@ -54,3 +32,6 @@ for import in $zdot_imports; do
 done
 unset zdot_imports
 
+if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
+    install_powerline_precmd
+fi
