@@ -24,7 +24,7 @@ setopt GLOBDOTS             # inlude hidden files
 autoload -U compinit; compinit -d $ZSH_CACHE/zcompdump-$ZSH_VERSION
 
 # Additional imports
-zdot_imports=(.zsh_functions .zsh_aliases)
+zdot_imports=(.zsh_functions .zsh_aliases .zsh_local)
 for import in $zdot_imports; do
     if [[ -f $ZDOTDIR/$import ]]; then
         source $ZDOTDIR/$import
