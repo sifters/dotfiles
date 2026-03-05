@@ -1,4 +1,6 @@
-# ZSH Functions
+# VSCode / Codium aliases - use 'code' to launch whichever is installed;
+# Codium preferred over code.  Define the extenxions directory to use XDG specification
+
 function code {
     if   whence -p codium > /dev/null; then
         command codium --extensions-dir "$XDG_DATA_HOME/vscode/extensions" "$@"
@@ -20,6 +22,8 @@ function codium {
         return 1
     fi
 }
+#############
+
 
 # Prompt Setup: Configure Powerline-Go
 function powerline_precmd() {
