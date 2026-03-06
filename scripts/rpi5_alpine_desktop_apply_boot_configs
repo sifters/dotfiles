@@ -1,5 +1,5 @@
 #!/bin/bash
-# Update the /boot/usercfg.txt file to agree to the contents in .config/
+# Update the /boot/usercfg.txt file to agree to the contents in raspberrypi/boot/
 # If configurations are existing, the script can append or
 # overwrite the contents in /boot.  A backup of any existing file
 # is created; but no cleanup is performed.
@@ -10,7 +10,7 @@ APPEND=false
 
 # Set up script paths
 SCRIPT_DIR="$(dirname "$0")"
-SOURCE="$SCRIPT_DIR/../.config/rpi/rpi5_usercfg.txt"
+SOURCE="$SCRIPT_DIR/../raspberrypi/boot/rpi5_usercfg.txt"
 DEST_FILE="/boot/usercfg.txt"
 
 
