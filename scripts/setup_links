@@ -4,6 +4,20 @@ target_dir=$(cd "$(dirname "$0")/../config/"; pwd) # set target directory relati
 xdg_config="${XDG_CONFIG_HOME:-${HOME}/.config}" # if XDG_CONFIG_HOME is set, use it - otherwise hardcode it
 echo $xdg_config
 
+# Setup XDG Target Directories
+# Python checks for the existence of the full path; not just XDG specification
+# Create the directories to ensure they are seen by python
+config_homes=(ipython jupyter)
+data_homes=(pyenv)
+for directory in $config_homes; do
+    mkdir -p "$XDG_CONFIG_HOME"/$directory
+    done
+
+for directory in $data_homes; do
+    mkdir -p "$XDG_DATA_HOME"/$directory
+    done
+
+
 # symlink configuration directories
 links=(git zsh kate/kpartsrc plasma-workspace/env/mozilla_firefox.sh powerline-go/themes/nord.json environment.d vim)
 for link in "${links[@]}"; do
