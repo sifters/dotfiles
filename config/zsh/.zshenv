@@ -4,6 +4,10 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 
+# For MacOS, .config/environment.d is not loaded by the system
+# this function will loop through the directory and load
+# the exports into ZSH, helping to ensure cross-compatibility
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     local env_dir="$HOME/.config/environment.d"
     if [[ -d "$env_dir" ]]; then
