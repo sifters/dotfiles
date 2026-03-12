@@ -1,0 +1,32 @@
+#!/bin/zsh
+
+# To use this file
+
+
+launchctl setenv XDG_CONFIG_HOME ${HOME}/.config
+launchctl setenv XDG_CACHE_HOME ${HOME}/.local/.cache
+launchctl setenv XDG_DATA_HOME ${HOME}/.local/share
+launchctl setenv XDG_STATE_HOME ${HOME}/.local/state
+
+# Sync environment.d variables to macOS launchd (GUI environment)
+ENV_DIR="$HOME/.config/environment.d"
+
+if [[ -d "$ENV_DIR" ]]; then
+    # Sort alphabetically to respect dependencies
+    for env_file in "$ENV_DIR"/*.conf(NOn); do
+        while IFS='=' read -r key value; do
+            # Skip empty lines, comments, or lines without an equals sign
+            [[ -z "$key" || "$key" == \#* || "$key" != *"="* ]] && continue
+
+            # Trim the key and value (handling potential spaces around '=')
+            local k="${key%%[[:space:]]*}"
+            local v="${value#*[[:space:]]}"
+
+            # Strip quotes from value
+            v="${v%\"}"
+            v="${v#\"}"
+
+            launchctl setenv "$k" "$v"
+        done < "$env_file"
+    done
+fi
