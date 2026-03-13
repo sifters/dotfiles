@@ -41,3 +41,28 @@ function install_powerline_precmd() {
   precmd_functions+=(powerline_precmd)
 }
 #############
+
+function cdd() {
+  # Dev Directory Fuzzy Match
+  local target
+  # If no folder given; cd into ~/dev directory
+  if [[ -z "$1" ]]; then
+    cd ~/dev && return
+  fi
+  # Search for matches and pipe them into fzf
+  #   -iname makes it case-insensitive
+  #   -prune skips the contents of node_modules and .git for speed
+  target=$(find ~/dev -maxdepth 4 \
+    \( -path '*/.*' -o -path '*node_modules*' \) -prune \
+    -o -type d -iname "*$1*" -print | \
+    fzf --height 60% --reverse --border --header "Select project in ~/dev/:" \
+    --preview 'ls -1AF --color=always {} | head -20' \
+    --preview-window right:50% \
+    --bind 'j:down,k:up' \
+    --exit-0)
+
+  # If fzf returned a path, cd into it
+  if [[ -n "$target" ]]; then
+    cd "$target"
+  fi
+}
