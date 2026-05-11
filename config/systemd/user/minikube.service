@@ -1,0 +1,25 @@
+[Unit]
+Description=Minikube (rootless podman)
+After=default.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+
+# Make sure minikube and podman are on PATH for the user manager
+Environment="PATH=/usr/local/bin:/usr/bin:/bin"
+
+# Rootless podman needs these set explicitly when run from systemd
+Environment="XDG_RUNTIME_DIR=/run/user/%U"
+Environment="DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/bus"
+
+ExecStart=/usr/bin/minikube start
+ExecStop=/usr/bin/minikube stop
+
+TimeoutStartSec=600
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=default.target
