@@ -27,8 +27,10 @@ function codium {
 
 # Prompt Setup: Configure Powerline-Go
 function powerline_precmd() {
-    PS1="$($GOPATH/bin/powerline-go -mode $XDG_CONFIG_HOME/powerline-go/modes/test.json -theme $XDG_CONFIG_HOME/powerline-go/themes/nord.json -cwd-max-depth 3 -cwd-mode fancy -modules venv,host,ssh,cwd,perms,git,exit,root -error $? -jobs ${(%):-"%j"} )"
-    PS1="$($GOPATH/bin/powerline-go -mode patched -theme $XDG_CONFIG_HOME/powerline-go/themes/nord.json -cwd-max-depth 3 -cwd-mode fancy -modules venv,host,ssh,cwd,perms,git,exit,root -error $? -jobs ${(%):-"%j"} )"
+#    PS1="$($GOPATH/bin/powerline-go -mode $XDG_CONFIG_HOME/powerline-go/modes/test.json -theme $XDG_CONFIG_HOME/powerline-go/themes/nord.json -cwd-max-depth 3 -cwd-mode fancy -modules venv,host,ssh,cwd,perms,git,exit,root -error $? -jobs ${(%):-"%j"} )"
+    PS1="$($GOPATH/bin/powerline-go -mode patched -theme $XDG_CONFIG_HOME/powerline-go/themes/nord.json -cwd-max-depth 3 -cwd-mode fancy -modules venv,host,ssh,cwd,perms,git,exit,root -error $? -jobs ${(%):-"%j"}  -root-indicator $'%(#.#.\xf3\xb0\xbb\xbd)')"
+#    PS1="$($GOPATH/bin/powerline-go -mode patched -theme $XDG_CONFIG_HOME/powerline-go/themes/nord.json -cwd-max-depth 3 -cwd-mode fancy -modules venv,host,ssh,cwd,perms,git,exit,root -error $? -jobs ${(%):-"%j"}  -root-indicator $'\uef3b')"
+#    PS1="$($GOPATH/bin/powerline-go -mode patched -theme $XDG_CONFIG_HOME/powerline-go/themes/nord.json -cwd-max-depth 3 -cwd-mode fancy -modules venv,host,ssh,cwd,perms,git,exit,root -error $? -jobs ${(%):-"%j"}  -root-indicator $'\e[1;31m\uef39\e[m')"
     set "?"
 }
 
