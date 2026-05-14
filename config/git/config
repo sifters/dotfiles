@@ -31,3 +31,7 @@
 	st = status -sb
     rv = remote -v
     last = log -1 HEAD --stat --patch
+[push]
+	autoSetupRemote = true
+[commit]
+	verbose = true
