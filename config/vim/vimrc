@@ -13,6 +13,16 @@ set directory=$XDG_CACHE_HOME/vim/swp//,/tmp//,.swp//
 set undodir=$XDG_CACHE_HOME/vim/undo//,/tmp//,.undo/
 set viminfofile=$XDG_STATE_HOME/vim/viminfo,~/viminfo
 
+
+
+" ------------
+" File Formats
+" ------------
+
+set fileformat=unix
+set fileformats=unix,dos,mac
+
+
 " -------------------
 " Indenting / Folding
 " -------------------
@@ -28,6 +38,7 @@ let g:indentLine_char="\u299A"
 let g:better_whitespace_skip_empty_lines=1
 let g:markdown_syntax_conceal=0
 let g:vim_json_conceal=0
+
 
 " ----------------------------
 " Splits/Syntax/Line Numbering
@@ -99,47 +110,22 @@ endfunction
 set statusline+=%#warningmsg#
 set statusline+=%*
 
+filetype on
+filetype plugin on
+filetype indent on
 " -----------
 " Auto Groups
 " -----------
 
 augroup filetypedetect
-    " cheap Splunk hack, change .conf filetypes to read in
-    " as .ini so there is some colorizations
+    " cheap Splunk hack, change .conf filetypes to read in as .ini so there is some colorizations
     " change newline fileformat to unix because configs are cross platform
     " au BufNewFile,BufRead *.conf,*/metadata/*.meta
     "     \ setfiletype dosini |
     "     \ set fileformat=unix
-    "Python files, we like unix formats
-    "because scripts are cross platform
-    au BufNewFile,BufRead *.py
-        \ set fileformat=unix |
-        \ set textwidth=79
-    au BufNewFile,BufRead gitconfig
-        \ setf gitconfig
-    au BufNewFile,BufRead Makefile
-        \ set noexpandtab
+    autocmd BufNewFile,BufRead gitconfig set filetype=gitconfig
+    " Google AppsScript - treat as javascript
+    autocmd BufRead,BufNewFile *.gs set filetype=javascript
+    " autocmd BufNewFile,BufRead Makefile set noexpandtab
 augroup END
 
-augroup yaml_fix
-    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab indentkeys-=0# indentkeys-=<:>
-    set foldlevelstart=20
-    let g:ale_yaml_yamllint_options = '-d "{extends: relaxed, rules: {line-length: disable}}"'
-    let g:indentLine_char = '⦙'
-augroup END
-
-
-" Google AppsScript - treat as javascript
-autocmd BufRead,BufNewFile *.gs set filetype=javascript
-
-augroup gs_settings
-  autocmd!
-  autocmd FileType javascript setlocal shiftwidth=2
-  autocmd FileType javascript setlocal softtabstop=2
-  autocmd FileType javascript setlocal expandtab
-
-  " Including the folding fix from before
-  autocmd FileType javascript let g:javaScript_fold=1
-  autocmd FileType javascript setlocal foldmethod=syntax
-  autocmd FileType javascript setlocal foldlevel=99
-augroup END
