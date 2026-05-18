@@ -1,20 +1,25 @@
 #!/bin/bash
 
 target_dir=$(cd "$(dirname "$0")/../config/"; pwd) # set target directory relative to this script's location
-xdg_config="${XDG_CONFIG_HOME:-${HOME}/.config}" # if XDG_CONFIG_HOME is set, use it - otherwise hardcode it
-echo $xdg_config
+
+# If XDG environment variables are missing, fall back to what they should be
+xdg_config="${XDG_CONFIG_HOME:-${HOME}/.config}"
+xdg_data="${XDG_DATA_HOME:-${HOME}/.local/share}"
+
+echo "Target Config Directory: $xdg_config"
+echo "Target Data Directory:   $xdg_data"
 
 # Setup XDG Target Directories
 # Python checks for the existence of the full path; not just XDG specification
 # Create the directories to ensure they are seen by python
 config_homes=(ipython jupyter)
 data_homes=(pyenv)
-for directory in $config_homes; do
-    mkdir -p "$XDG_CONFIG_HOME"/$directory
+for directory in ${config_homes[@]}; do
+    mkdir -p "${xdg_config}/${directory}"
     done
 
-for directory in $data_homes; do
-    mkdir -p "$XDG_DATA_HOME"/$directory
+for directory in $data_homes[@]; do
+    mkdir -p "${xdg_data}/${directory}"
     done
 
 
@@ -24,11 +29,19 @@ for link in "${links[@]}"; do
     # If the link has subfolders, create them if they do not exist.
     #     We do this so that individual known files are symlinked, not the directory where the
     #     application may add it's own files.
-    destination_dir="$(dirname "${xdg_config}/${link}")"
+    destination="${xdg_config}/${link}"
+    destination_dir="$(dirname "$destination")"
+
+    # Ensure the parent directory exists before symlinking into it
     [[ -d "${destination_dir}" ]] || mkdir -p "${destination_dir}"
 
     # Test if file/directory exists; if not them symlink it
-    [[ -e ${xdg_config}/${link} ]] || ln -sf "${target_dir}/${link}" "${HOME}/.config/${link}"
+    if [[ -e "$destination" || -L "$destination" ]]; then
+        echo "Skipping: $destination already exists"
+    else
+        echo "Linking   $destinate -> ${target_dir}/${link}"
+        ln -s "${target_dir}/${link}" "destination"
+    fi
 done
 
 # Set up SSH defaults
