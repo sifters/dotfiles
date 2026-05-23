@@ -5,4 +5,4 @@ alias lll='LC_COLLATE=C ls -lAhF --color=always' #Sort dotfiles first; include m
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
-alias cddev='cd ~/dev'
+# alias cddev='cd ~/dev'
