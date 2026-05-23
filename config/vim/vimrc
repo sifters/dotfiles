@@ -14,7 +14,6 @@ set undodir=$XDG_CACHE_HOME/vim/undo//,/tmp//,.undo/
 set viminfofile=$XDG_STATE_HOME/vim/viminfo,~/viminfo
 
 
-
 " ------------
 " File Formats
 " ------------
@@ -113,6 +112,8 @@ set statusline+=%*
 filetype on
 filetype plugin on
 filetype indent on
+
+
 " -----------
 " Auto Groups
 " -----------
