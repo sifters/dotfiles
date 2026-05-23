@@ -2,36 +2,38 @@
     br = branch
     ci = commit
     cm = commit -m
-	st = status -sb
-    rv = remote -v
+    dt = difftool
     last = log -1 HEAD --stat --patch
+    rv = remote -v
+    root = rev-parse --show-superproject-working-tree --show-toplevel
+    st = status -sb
 [commit]
-	verbose = true
+    verbose = true
 [core]
-	hooksPath = ~/.config/git/hooks
+    hooksPath = ~/.config/git/hooks
 [credential]
-	helper = store --file ~/.local/share/git/credentials
+    helper = store --file ~/.local/share/git/credentials
 [diff]
-	tool = vimdiff
+    tool = vimdiff
 [difftool]
-	prompt = false
+    prompt = false
     trustExitCode = true
 [fetch]
     prune = true
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 [init]
-	# templatedir = ~/.config/git/templates
-	defaultBranch = main
+    # templatedir = ~/.config/git/templates
+    defaultBranch = main
 [merge]
     ff = only
 [pager]
     branch = false
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
 [user]
-	name = Eugene Rinaldi
-	email = eugene@sifters.net
+    name = Eugene Rinaldi
+    email = eugene@sifters.net
