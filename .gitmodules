@@ -1,15 +1,15 @@
 [submodule "config/vim/pack/plugins/start/linediff"]
-	path = config/vim/pack/plugins/start/linediff
+	path = config/vim/pack/difftools/start/linediff
 	url = https://github.com/AndrewRadev/linediff.vim.git
 [submodule "config/vim/pack/plugins/start/diffchanges"]
 	path = config/vim/pack/plugins/start/diffchanges
 	url = https://github.com/jmcantrell/vim-diffchanges.git
     ignore = all
 [submodule "config/vim/pack/plugins/start/lightline"]
-	path = config/vim/pack/plugins/start/lightline
+	path = config/vim/pack/interface/start/lightline
 	url = https://github.com/itchyny/lightline.vim
 [submodule "config/vim/pack/plugins/start/nerdtree"]
-	path = config/vim/pack/plugins/start/nerdtree
+	path = config/vim/pack/interface/start/nerdtree
 	url = https://github.com/preservim/nerdtree.git
 [submodule "config/vim/pack/plugins/start/SectionHeader"]
 	path = config/vim/pack/plugins/start/SectionHeader
@@ -19,23 +19,23 @@
 	url = https://github.com/itchyny/vim-gitbranch.git
     ignore = all
 [submodule "config/vim/pack/plugins/start/diffthisbuffer"]
-	path = config/vim/pack/plugins/start/diffthisbuffer
+	path = config/vim/pack/difftools/start/diffthisbuffer
 	url = https://github.com/sifters/diffthisbuffer.git
 [submodule "config/vim/pack/plugins/start/vim-splunk"]
-	path = config/vim/pack/plugins/start/vim-splunk
+	path = config/vim/pack/languages/start/vim-splunk
     url = https://github.com/sifters/vim-splunk.git
 [submodule "config/vim/pack/plugins/start/vim-fugitive"]
-	path = config/vim/pack/plugins/start/vim-fugitive
+	path = config/vim/pack/git/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 [submodule "config/vim/pack/plugins/start/vim-ps1"]
-	path = config/vim/pack/plugins/start/vim-ps1
+	path = config/vim/pack/languages/start/vim-ps1
 	url = https://github.com/PProvost/vim-ps1.git
 [submodule "/home/rinalex/.vim/config/vim/pack/plugins/start/ale"]
-	path = config/vim/pack/plugins/start/ale
+	path = config/vim/pack/linters/start/ale
 	url = https://github.com/dense-analysis/ale.git
 [submodule "config/vim/pack/plugins/start/indentLine"]
-	path = config/vim/pack/plugins/start/indentLine
+	path = config/vim/pack/interface/start/indentLine
 	url = https://github.com/Yggdroot/indentLine.git
 [submodule "config/vim/pack/plugins/start/vim-better-whitespace"]
-	path = config/vim/pack/plugins/start/vim-better-whitespace
+	path = config/vim/pack/linters/start/vim-better-whitespace
 	url = https://github.com/ntpeters/vim-better-whitespace.git
