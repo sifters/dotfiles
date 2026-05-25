@@ -24,7 +24,7 @@ for directory in $data_homes[@]; do
 
 
 # symlink configuration directories
-links=(git zsh kate/kpartsrc plasma-workspace/env/mozilla_firefox.sh powerline-go/themes/nord.json environment.d vim)
+links=(git zsh kate/kpartsrc plasma-workspace/env/mozilla_firefox.sh powerline-go/themes/nord.json environment.d vim ghostty)
 for link in "${links[@]}"; do
     # If the link has subfolders, create them if they do not exist.
     #     We do this so that individual known files are symlinked, not the directory where the
