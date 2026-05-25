@@ -35,7 +35,6 @@ set foldmethod=indent
 set foldlevel=99
 let g:better_whitespace_skip_empty_lines=1
 let g:markdown_syntax_conceal=0
-let g:vim_json_conceal=0
 
 
 " ----------------------------
@@ -46,8 +45,9 @@ set splitbelow
 set splitright
 set number
 set hlsearch
-set cursorline
+set nocursorline
 syntax enable
+
 
 " -------------
 " ALE / Linting
@@ -61,25 +61,12 @@ let g:ale_sign_warning = "\uEA87"
 " let g:ale_sign_error = "\u2718"
 " let g:ale_sign_warning = "\u26A0"
 
-" -------------
-" Color Schemes
-" -------------
-
-if !has('gui_running')
-    set t_Co=256
-endif
-
-set background=dark
-colorscheme jellybeans
-
-if &diff
-    colorscheme palenight
-endif
 
 " -----------------
 " Terminal Settings
 " -----------------
 set termwinsize=12x0
+
 
 " -----------------------
 " Lightline Configuration
@@ -133,3 +120,43 @@ augroup indent_rainbow
     autocmd!
     autocmd VimEnter,WinEnter,BufWinEnter * call rainbow#enable()
 augroup END
+
+
+" -------------
+" Color Schemes
+" -------------
+
+if !has('gui_running')
+    set t_Co=256
+endif
+
+" Inherit the default colorscheme from the terminal
+colorscheme default
+augroup TerminalBackground
+    autocmd!
+    " Map Vim's core background to NONE (transparent), forcing it to use the terminal background
+    " This is done for all sections: Normal = Standard Text
+    " LineNR = Line Numbers; SignColumn = Sidebar
+    autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+    autocmd ColorScheme * highlight NonText ctermbg=NONE guibg=NONE
+    autocmd ColorScheme * highlight LineNr ctermbg=NONE guibg=NONE
+    autocmd ColorScheme * highlight SignColumn ctermbg=NONE guibg=NONE
+augroup END
+
+" colorscheme jellybeans
+set background=dark
+
+" Override color scheme if Diff mode
+if &diff
+    set background=dark
+    colorscheme palenight
+endif
+
+
+" ----------------------------
+" Cursor Line / Gutter Options
+" ----------------------------
+set cursorline
+set cursorlineopt=number
+
+set relativenumber
