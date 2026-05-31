@@ -24,7 +24,7 @@ setopt GLOBDOTS             # inlude hidden files
 autoload -U compinit; compinit -d $ZSH_CACHE/zcompdump-$ZSH_VERSION
 
 # Additional imports
-zdot_imports=(.zsh_functions .zsh_aliases .zsh_local)
+zdot_imports=(.zsh_functions .zsh_aliases .zsh_keybindings .zsh_local)
 for import in $zdot_imports; do
     if [[ -f $ZDOTDIR/$import ]]; then
         source $ZDOTDIR/$import
@@ -32,6 +32,8 @@ for import in $zdot_imports; do
 done
 unset zdot_imports
 
-if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
-    install_powerline_precmd
-fi
+# if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
+#     install_powerline_precmd
+# fi
+#
+eval "$(starship init zsh)"
