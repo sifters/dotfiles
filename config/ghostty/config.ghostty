@@ -3,4 +3,6 @@ font-family = "Hack Nerd Font Mono"
 theme = "Banana Blueberry"
 window-width = 160
 window-height = 64
+
+# MacOS Font Settings
 font-thicken = true
