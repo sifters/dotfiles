@@ -115,4 +115,24 @@ function cdd() {
   fi
 }
 
+if command -v eza &> /dev/null; then
+    _eza_flags=(--icons=auto --group-directories-first)
+    ls()    { eza "${_eza_flags[@]}" "$@" }
+    ll()    { eza -1ah "$@"}
+    lll()   { eza -lah --git "${_eza_flags[@]}" "$@" }
+    lt()    { eza --tree --level=2 "${_eza_flags[@]}" "$@" }
+    tree()  { eza --tree "${_eza_flags[@]}" "$@" }
+else
+    # Fallback: detect GNU vs BSD ls (Linux vs macOS default)
+    if ls --color=auto / &> /dev/null; then
+        _ls_flags=(--color=auto --group-directories-first)
+    else
+        # BSD ls (macOS default)
+        _ls_flags=(-G)
+    fi
+    ls()    { LC_COLLATE=C command ls "${_ls_flags[@]}" "$@" }
+    ll()    { LC_COLLATE=C command ls -1AF "${_ls_flags[@]}" "$@" }
+    lll()   { LC_COLLATE=C command ls -lAhF --color=always "$@" }
+    lt()    { LC_COLLATE=C command tree -L 2 "$@" }
+fi
 
