@@ -1,10 +1,10 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+"schema" = 'https://starship.rs/config-schema.json'
 
 format = """
 [](#9A348E)\
 $os\
 $username\
-[](bg:#DA627D fg:#9A348E)\
+[](fg:#9A348E bg:#DA627D)\
 $directory\
 [](fg:#DA627D bg:#FCA17D)\
 $git_branch\
@@ -95,11 +95,11 @@ format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:#FCA17D"
+style = "bg:#FCA17D fg:#5E3C2F"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#FCA17D"
+style = "bg:#FCA17D fg:#5E3C2F"
 format = '[$all_status$ahead_behind ]($style)'
 
 [golang]
