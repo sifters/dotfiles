@@ -32,8 +32,10 @@ for import in $zdot_imports; do
 done
 unset zdot_imports
 
+# Powerline-Go Prompt
 # if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
 #     install_powerline_precmd
 # fi
-#
+
+# Starship Prompt
 eval "$(starship init zsh)"
