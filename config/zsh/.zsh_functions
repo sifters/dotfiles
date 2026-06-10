@@ -136,3 +136,6 @@ else
     lt()    { LC_COLLATE=C command tree -L 2 "$@" }
 fi
 
+function sudo() {
+    command sudo --preserve-env=ZDOTDIR,STARSHIP_CONFIG -s "$@"
+}
