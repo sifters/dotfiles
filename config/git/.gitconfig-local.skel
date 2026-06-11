@@ -1,0 +1,7 @@
+# Skeleton file for username overrides.
+# Remove the .skel extension and ensure the include directive
+# is at or near the bottom of the global git configuration file
+
+[user]
+    name = "Overriding User"
+    email = "email@domain.local"

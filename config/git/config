@@ -1,11 +1,13 @@
 [alias]
     br = branch
+    cb = switch -c
     ci = commit
     cm = commit -m
     dt = difftool
     last = log -1 HEAD --stat --patch
     rv = remote -v
     root = rev-parse --show-superproject-working-tree --show-toplevel
+    sc = switch -c
     st = status -sb
 [commit]
     verbose = true
@@ -35,5 +37,8 @@
 [push]
     autoSetupRemote = true
 [user]
+    useConfigOnly = true
     name = Eugene Rinaldi
     email = eugene@sifters.net
+[include]
+    path = .gitconfig-local
