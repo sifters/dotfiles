@@ -39,3 +39,6 @@ unset zdot_imports
 
 # Starship Prompt
 eval "$(starship init zsh)"
+
+# Fuzzy Find Keybindings
+eval "$(fzf --zsh)"
