@@ -7,3 +7,6 @@ bell-features = no-attention,no-title
 
 # MacOS Font Settings
 font-thicken = true
+
+# Include local overrides
+config-file = ?ghostty_local
