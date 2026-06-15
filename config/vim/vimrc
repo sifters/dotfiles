@@ -5,7 +5,7 @@
 for dir in ["backup","swp","undo"]
     call mkdir($XDG_CACHE_HOME . "/vim/" . dir, 'p')
 endfor
- 
+
 call mkdir($XDG_STATE_HOME . "/vim/", 'p')
 
 set backupdir=$XDG_CACHE_HOME/vim/backup//,/tmp//,.backup//
@@ -43,10 +43,17 @@ let g:markdown_syntax_conceal=0
 
 set splitbelow
 set splitright
-set number
 set hlsearch
 set nocursorline
+set number
+set relativenumber
 syntax enable
+
+" ----------------------------
+" Cursor Line / Gutter Options
+" ----------------------------
+set cursorline
+set cursorlineopt=number
 
 
 " -------------
@@ -152,11 +159,8 @@ if &diff
     colorscheme palenight
 endif
 
+" --------------------------
+" Remove trailing whitespace
+" --------------------------
 
-" ----------------------------
-" Cursor Line / Gutter Options
-" ----------------------------
-set cursorline
-set cursorlineopt=number
-
-set relativenumber
+autocmd BufWritePre *.h,*.c,vimrc,.zsh*,*.conf :%s/\s\+$//e
