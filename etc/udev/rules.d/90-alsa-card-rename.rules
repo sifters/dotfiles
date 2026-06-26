@@ -1,0 +1,5 @@
+SUBSYSTEM=="sound", KERNELS=="0000:03:00.1", ATTR{id}="HDMI_Onboard"
+SUBSYSTEM=="sound", KERNELS=="0000:0f:00.1", ATTR{id}="HDMI_Radeon"
+SUBSYSTEM=="sound", KERNELS=="0000:0f:00.6", ATTR{id}="Analog_Onboard"
+SUBSYSTEM=="sound", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="0ab1", ATTR{id}="Mic_Yeti_Nano"
+SUBSYSTEM=="sound", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="085c", ATTR{id}="Cam_Logi_C922"
