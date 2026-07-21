@@ -42,3 +42,5 @@
     email = eugene@sifters.net
 [include]
     path = .gitconfig-local
+[includeIf "hasconfig:remote.*.url:https://github.com/qmk/*"]
+    path = ~/.config/git/.gitconfig-qmk

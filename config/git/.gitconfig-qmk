@@ -1,0 +1,16 @@
+[fetch]
+    depth = 1
+    prune = true
+    recurseSubmodules = on-demand
+
+[submodule]
+    recurse = true
+    fetchJobs = 0
+
+[alias]
+    sync = "!git fetch --depth=1 && \
+            git reset --hard @{upstream} && \
+            git submodule update --init --recursive --depth=1 --force"
+
+#[remote "origin"]
+#    fetch = +refs/heads/master:refs/remotes/origin/master
