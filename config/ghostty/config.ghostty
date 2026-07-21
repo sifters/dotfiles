@@ -5,6 +5,9 @@ window-width = 160
 window-height = 64
 bell-features = no-attention,no-title
 
+# Downgrade terminal to support enterprise hosts
+term = xterm-256color
+
 # MacOS Font Settings
 font-thicken = true
 
