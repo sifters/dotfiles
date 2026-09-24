@@ -8,7 +8,7 @@ export XDG_STATE_HOME=$HOME/.local/state
 # this function will loop through the directory and load
 # the exports into ZSH, helping to ensure cross-compatibility
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ "$OSTYPE" == "darwin"* || "$OSTYPE" == "linux-musl" ]]; then
     local env_dir="$HOME/.config/environment.d"
     if [[ -d "$env_dir" ]]; then
         for env_file in "$env_dir"/*.conf(NOn); do
