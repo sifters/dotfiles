@@ -16,4 +16,4 @@ setlocal indentkeys-=<:>
 setlocal foldlevelstart=20
 
 " Linting
-let g:ale_yaml_yamllint_options = '-d "{extends: relaxed, rules: {line-length: disable}}"'
+let g:ale_yaml_yamllint_options = '-d "{extends: relaxed, rules: {line-length: {max: 120, level: error}}}"'
