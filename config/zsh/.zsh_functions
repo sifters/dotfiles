@@ -139,4 +139,15 @@ function sudo() {
     command sudo --preserve-env=ZDOTDIR,STARSHIP_CONFIG -s "$@"
 }
 
+#############
+
+function oc() {
+    podman run -it --rm \
+        -v "$PWD":/workspace:Z \
+        -v "$XDG_CONFIG_HOME/opencode":/home/opencode/.config/opencode:Z \
+        -e ANTHROPIC_API_KEY \
+        --userns=keep-id \
+        -w /workspace \
+        ghcr.io/anomalyco/opencode
+    }
 
